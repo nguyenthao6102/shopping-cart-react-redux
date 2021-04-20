@@ -3,7 +3,7 @@ import React, { Component } from "react";
 export default class CartResult extends Component {
 	render() {
 		const { cart } = this.props;
-		console.log(cart);
+
 		return (
 			<tr>
 				<td colSpan="3"></td>
