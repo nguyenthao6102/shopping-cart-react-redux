@@ -25,12 +25,18 @@ export default class CartItem extends Component {
 						<label
 							className="btn btn-sm btn-primary
                                                 btn-rounded waves-effect waves-light"
+							onClick={() =>
+								item.quantity > 1
+									? this.onUpdate(item.product, item.quantity - 1)
+									: this.onUpdate(item.product, item.quantity)
+							}
 						>
 							<span>—</span>
 						</label>
 						<label
 							className="btn btn-sm btn-primary
                                                 btn-rounded waves-effect waves-light"
+							onClick={() => this.onUpdate(item.product, item.quantity + 1)}
 						>
 							<span>+</span>
 						</label>
@@ -60,5 +66,10 @@ export default class CartItem extends Component {
 		const { onDeleteProductInCart, onChangeMessage } = this.props;
 		onDeleteProductInCart(product);
 		onChangeMessage(Message.MSG_DELETE_PRODUCT_IN_CART_SUCCESS);
+	};
+	onUpdate = (product, quantity) => {
+		const { onUpdateProductInCart, onChangeMessage } = this.props;
+		onUpdateProductInCart(product, quantity);
+		onChangeMessage(Message.MSG_UPDATE_CART_SUCCESS);
 	};
 }
