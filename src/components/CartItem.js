@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import * as Message from "../constants/Message";
 
 export default class CartItem extends Component {
 	render() {
@@ -44,6 +45,7 @@ export default class CartItem extends Component {
 						data-placement="top"
 						title=""
 						data-original-title="Remove item"
+						onClick={() => this.onDelete(item.product)}
 					>
 						X
 					</button>
@@ -53,5 +55,10 @@ export default class CartItem extends Component {
 	}
 	showSubTotal = (price, quantity) => {
 		return price * quantity;
+	};
+	onDelete = (product) => {
+		const { onDeleteProductInCart, onChangeMessage } = this.props;
+		onDeleteProductInCart(product);
+		onChangeMessage(Message.MSG_DELETE_PRODUCT_IN_CART_SUCCESS);
 	};
 }
